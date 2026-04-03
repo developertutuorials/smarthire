@@ -118,7 +118,7 @@ npm run dev
 
 ## 🚀 Deployment
 
-Deployed on **Vercel** — [Live Demo](https://smarthire.vercel.app)
+Deployed on **Vercel** — [Live Demo](https://smarthire-three.vercel.app/)
 
 
 
