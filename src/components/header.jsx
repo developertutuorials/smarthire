@@ -8,7 +8,15 @@ import {
   useUser,
 } from "@clerk/clerk-react";
 import { Button } from "./ui/button";
-import { BriefcaseBusiness, Heart, PenBox, Home, Menu, X } from "lucide-react";
+import {
+  BriefcaseBusiness,
+  Heart,
+  PenBox,
+  Home,
+  Menu,
+  X,
+  FileText,
+} from "lucide-react";
 
 const Header = () => {
   const [showSignIn, setShowSignIn] = useState(false);
@@ -32,7 +40,6 @@ const Header = () => {
   return (
     <>
       <nav className="py-3 px-4 flex justify-between items-center relative">
-        
         {/* Logo */}
         <Link to="/">
           <img src="/logo.png" className="h-14 sm:h-20" alt="Hirrd Logo" />
@@ -42,10 +49,24 @@ const Header = () => {
         <div className="hidden md:flex gap-3 items-center">
           <SignedOut>
             <Link to="/">
-              <Button variant="outline" className="rounded-full flex items-center gap-2">
+              <Button
+                variant="outline"
+                className="rounded-full flex items-center gap-2"
+              >
                 <Home size={16} /> Home
               </Button>
             </Link>
+
+            {/* Check Resume - SignedOut */}
+            <Link to="/resume-checker">
+              <Button
+                variant="outline"
+                className="rounded-full flex items-center gap-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-colors"
+              >
+                <FileText size={16} /> Check Resume
+              </Button>
+            </Link>
+
             <Button variant="outline" onClick={() => setShowSignIn(true)}>
               Login
             </Button>
@@ -53,27 +74,49 @@ const Header = () => {
 
           <SignedIn>
             <Link to="/">
-              <Button variant="outline" className="rounded-full flex items-center gap-2">
+              <Button
+                variant="outline"
+                className="rounded-full flex items-center gap-2"
+              >
                 <Home size={16} /> Home
+              </Button>
+            </Link>
+
+            {/* Check Resume - SignedIn */}
+            <Link to="/resume-checker">
+              <Button
+                variant="outline"
+                className="rounded-full flex items-center gap-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition-colors"
+              >
+                <FileText size={16} /> Check Resume
               </Button>
             </Link>
 
             {user?.unsafeMetadata?.role === "recruiter" && (
               <Link to="/post-job">
-                <Button variant="destructive" className="rounded-full flex items-center gap-2">
+                <Button
+                  variant="destructive"
+                  className="rounded-full flex items-center gap-2"
+                >
                   <PenBox size={18} /> Post a Job
                 </Button>
               </Link>
             )}
 
             <Link to="/my-jobs">
-              <Button variant="outline" className="rounded-full flex items-center gap-2">
+              <Button
+                variant="outline"
+                className="rounded-full flex items-center gap-2"
+              >
                 <BriefcaseBusiness size={18} /> My Jobs
               </Button>
             </Link>
 
             <Link to="/saved-jobs">
-              <Button variant="outline" className="rounded-full flex items-center gap-2">
+              <Button
+                variant="outline"
+                className="rounded-full flex items-center gap-2"
+              >
                 <Heart size={18} /> Saved Jobs
               </Button>
             </Link>
@@ -109,13 +152,21 @@ const Header = () => {
         {/* Mobile Dropdown */}
         {menuOpen && (
           <div className="absolute top-full left-0 w-full bg-gray-950 border-t border-gray-800 z-50 flex flex-col gap-2 px-5 py-4 md:hidden shadow-xl">
-            
             <Link
               to="/"
               onClick={() => setMenuOpen(false)}
               className="flex items-center gap-3 text-white hover:text-gray-300 py-2 border-b border-gray-800"
             >
               <Home size={18} /> Home
+            </Link>
+
+            {/* Check Resume - Mobile */}
+            <Link
+              to="/resume-checker"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-3 text-blue-400 hover:text-blue-300 py-2 border-b border-gray-800"
+            >
+              <FileText size={18} /> Check Resume
             </Link>
 
             <SignedIn>
@@ -125,7 +176,10 @@ const Header = () => {
                   onClick={() => setMenuOpen(false)}
                   className="w-full"
                 >
-                  <Button variant="destructive" className="rounded-full w-full flex items-center gap-2">
+                  <Button
+                    variant="destructive"
+                    className="rounded-full w-full flex items-center gap-2"
+                  >
                     <PenBox size={18} /> Post a Job
                   </Button>
                 </Link>
@@ -179,4 +233,3 @@ const Header = () => {
 };
 
 export default Header;
-
