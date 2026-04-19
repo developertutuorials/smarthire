@@ -11,6 +11,7 @@ import JobListing from "./pages/jobListing";
 import MyJobs from "./pages/my-jobs";
 import SavedJobs from "./pages/saved-jobs";
 import JobPage from "./pages/job";
+import ResumeCheckerPage from "./pages/resume-checker-page";
 
 import "./App.css";
 
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
             <JobPage />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "/resume-checker",
+        element: <ResumeCheckerPage />,
       },
     ],
   },
